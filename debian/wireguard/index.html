@@ -1,0 +1,681 @@
+<!DOCTYPE html><html class="2xl:text-[20px]" dir="ltr" lang="zh-CN"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="/sitemap-index.xml" rel="sitemap"><link href="/_astro/favicon.CGiRCjPI.ico" rel="shortcut icon"><link href="/_astro/favicon.vp_fBu0c.svg" rel="icon" type="image/svg+xml"><link href="/_astro/favicon.vp_fBu0c.svg" rel="mask-icon" color="#8D46E7"><link href="/_astro/apple-touch-icon.DHIlG7dp.png" rel="apple-touch-icon" sizes="180x180"><style>:root{--aw-font-sans:'Inter Variable';--aw-font-serif:'Inter Variable';--aw-font-heading:'Inter Variable';--aw-color-primary:rgb(1 97 239);--aw-color-secondary:rgb(1 84 207);--aw-color-accent:rgb(109 40 217);--aw-color-text-heading:rgb(0 0 0);--aw-color-text-default:rgb(16 16 16);--aw-color-text-muted:rgb(16 16 16 / 66%);--aw-color-bg-page:rgb(255 255 255);--aw-color-bg-page-dark:rgb(3 6 32)}.dark{--aw-font-sans:'Inter Variable';--aw-font-serif:'Inter Variable';--aw-font-heading:'Inter Variable';--aw-color-primary:rgb(1 97 239);--aw-color-secondary:rgb(1 84 207);--aw-color-accent:rgb(109 40 217);--aw-color-text-heading:rgb(247, 248, 248);--aw-color-text-default:rgb(229 236 246);--aw-color-text-muted:rgb(229 236 246 / 66%);--aw-color-bg-page:rgb(3 6 32)}</style><script>!function(){const e="system";function t(e){"dark"===e?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark");const t=document.querySelectorAll("[data-aw-toggle-color-scheme] > input");t&&t.length&&t.forEach(t=>{t.checked="dark"!==e})}e&&e.endsWith(":only")||(localStorage.theme,0)?t(e.replace(":only","")):"dark"===localStorage.theme||!("theme"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):t("light")}()</script><title>WireGuard - Debian — 系统配置与下载中心</title><link href="http://10.0.0.165/debian/wireguard" rel="canonical"><meta content="WireGuard 配置与维护命令。" name="description"><meta content="index, follow" name="robots"><meta content="WireGuard - Debian" property="og:title"><meta content="website" property="og:type"><meta content="http://10.0.0.165/_astro/default.CZ816Hke_Z20CwEO.jpg" property="og:image"><meta content="http://10.0.0.165/debian/wireguard" property="og:url"><meta content="WireGuard 配置与维护命令。" property="og:description"><meta content="zh-CN" property="og:locale"><meta content="系统配置与下载中心" property="og:site_name"><meta content="http://10.0.0.165/_astro/default.CZ816Hke_Z20CwEO.jpg" property="og:image:url"><meta content="1200" property="og:image:width"><meta content="626" property="og:image:height"><meta content="WireGuard - Debian" property="og:image:alt"><meta content="summary_large_image" name="twitter:card"><meta content="@arthelokyo" name="twitter:site"><meta content="@arthelokyo" name="twitter:creator"><meta content="orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M" name="google-site-verification"><script data-id id="ga-init">if(document.getElementById("ga-init").dataset.id){var d=document.getElementById("ga-init").dataset.id;window.dataLayer=window.dataLayer||[],window.gtag=function(){dataLayer.push(arguments)},window.gtag("js",new Date),window.gtag("config",d)}</script><link href="https://images.unsplash.com" rel="preconnect"><meta content="true" name="astro-view-transitions-enabled"><meta content="swap" name="astro-view-transitions-fallback"><script src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CAqDO0tx.js" type="module"></script><link href="/_astro/Layout.D1VQFm4k.css" rel="stylesheet"></head><body class="antialiased bg-page text-default tracking-tight"><header class="mx-auto w-full border-b border-gray-50/0 ease-in-out flex-none sticky top-0 transition-[opacity] z-40" data-aw-sticky-header="true" id="header"><div class="absolute inset-0"></div><div class="relative max-w-7xl mx-auto md:grid md:grid-cols-3 md:items-center md:px-6 px-3 py-3 text-default w-full"><div class="flex justify-between"><a class="flex items-center" href="/"><span class="font-bold dark:text-white text-gray-900 text-2xl md:text-xl ml-2 rtl:ml-0 rtl:mr-2 self-center whitespace-nowrap">系统配置与下载中心</span></a><div class="flex items-center md:hidden"><button class="flex items-center cursor-pointer flex-col group h-12 justify-center rounded w-12" type="button" aria-label="Toggle Menu" data-aw-toggle-menu><span class="sr-only">Toggle Menu</span> <span class="transition bg-black dark:bg-white duration-200 ease h-0.5 my-1 opacity-80 rounded-full transform w-6 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-2.5" aria-hidden="true"></span> <span class="transition bg-black dark:bg-white duration-200 ease h-0.5 my-1 opacity-80 rounded-full transform w-6 group-[.expanded]:opacity-0" aria-hidden="true"></span> <span class="transition bg-black dark:bg-white duration-200 ease h-0.5 my-1 opacity-80 rounded-full transform w-6 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-2.5" aria-hidden="true"></span></button></div></div><nav aria-label="Main navigation" class="hidden items-center md:flex md:w-auto w-full md:justify-self-center md:mx-5 md:overflow-visible overflow-x-hidden overflow-y-auto text-default"><ul class="flex flex-col font-medium md:flex-row md:justify-center md:self-center md:text-[0.9375rem] md:w-auto text-xl tracking-[0.01rem] w-full"><li class="dropdown"><button class="dark:hover:text-white hover:text-link flex items-center px-4 py-3 whitespace-nowrap" type="button">Debian <svg class="hidden h-3.5 md:inline ml-0.5 rtl:ml-0 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em"><symbol id="ai:tabler:chevron-down" viewBox="0 0 24 24"><path d="m6 9l6 6l6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></symbol><use href="#ai:tabler:chevron-down"></use></svg></button><ul class="font-medium dark:md:bg-dark drop-shadow-xl dropdown-menu md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded"><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/linux-kernel-build">Linux内核编译</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/common-commands">常用命令</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/tmux-screen">Tmux &amp;&amp; Screen</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/python">Python</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap aw-link-active" href="/debian/wireguard">WireGuard</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/acme-certs">ACME证书</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/docker">Docker</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/adguardhome">AdGuardHome</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/disk-mount">硬盘挂载</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/kea-dhcp-server">Kea DHCP Server</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/debian/tar-tee-find">命令示例tar tee find</a></li></ul></li><li class="dropdown"><button class="dark:hover:text-white hover:text-link flex items-center px-4 py-3 whitespace-nowrap" type="button">PVE <svg class="hidden h-3.5 md:inline ml-0.5 rtl:ml-0 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24"><use href="#ai:tabler:chevron-down"></use></svg></button><ul class="font-medium dark:md:bg-dark drop-shadow-xl dropdown-menu md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded"><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/pve/config">配置</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/pve/import-disk">导入磁盘镜像</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/pve/disk-rdm">磁盘RDM直通</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/pve/zfs">ZFS</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/pve/pve-aspm">PVE ASPM设置</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/pve/vm-management">虚拟机管理</a></li></ul></li><li class="dropdown"><button class="dark:hover:text-white hover:text-link flex items-center px-4 py-3 whitespace-nowrap" type="button">VyOS配置 <svg class="hidden h-3.5 md:inline ml-0.5 rtl:ml-0 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24"><use href="#ai:tabler:chevron-down"></use></svg></button><ul class="font-medium dark:md:bg-dark drop-shadow-xl dropdown-menu md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded"><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/install">安装</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/interfaces">网口配置</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/lan">设置lan</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/timezone">设置时区</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/wan">设置wan</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/dns">DNS</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/firewall">防火墙</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/access-192-168-1-1">访问192.168.1.1</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/ipv6-allow">指定ipv6放行</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/static-ip">静态ip</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/wan-dhcp">WAN DHCP</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/traffic-shaping">流量整形</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/vyos/ssh-key">SSH密钥</a></li></ul></li><li class="dropdown"><button class="dark:hover:text-white hover:text-link flex items-center px-4 py-3 whitespace-nowrap" type="button">Windows <svg class="hidden h-3.5 md:inline ml-0.5 rtl:ml-0 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24"><use href="#ai:tabler:chevron-down"></use></svg></button><ul class="font-medium dark:md:bg-dark drop-shadow-xl dropdown-menu md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded"><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/windows/md5-win2022">MD5/WIN2022激活</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/windows/adb">ADB命令</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/windows/network">网络命令</a></li></ul></li><li class="dropdown"><button class="dark:hover:text-white hover:text-link flex items-center px-4 py-3 whitespace-nowrap" type="button">下载 <svg class="hidden h-3.5 md:inline ml-0.5 rtl:ml-0 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24"><use href="#ai:tabler:chevron-down"></use></svg></button><ul class="font-medium dark:md:bg-dark drop-shadow-xl dropdown-menu md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded"><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/downloads">下载总览</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/downloads/debian-scripts">Debian脚本</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/downloads/windows-tools">Windows工具</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/downloads/registry-files">注册表文件</a></li><li><a class="py-2 block dark:hover:bg-gray-700 dark:hover:text-white first:rounded-t hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 whitespace-no-wrap" href="/downloads/pictures">图片</a></li></ul></li></ul></nav><div class="p-3 bottom-0 fixed hidden items-center justify-end left-0 md:flex md:justify-self-end md:mb-0 md:p-0 md:self-center md:static md:w-auto rtl:left-auto rtl:right-0 w-full"><div class="flex items-center justify-between md:w-auto w-full"><div class="flex"><button class="text-muted dark:text-gray-400 dark:focus:ring-gray-700 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 inline-flex items-center p-2.5 rounded-lg text-sm" type="button" aria-label="Toggle between Dark and Light mode" data-aw-toggle-color-scheme><svg class="w-6 h-6 md:h-5 md:inline-block md:w-5" data-icon="tabler:sun" height="1em" width="1em"><symbol id="ai:tabler:sun" viewBox="0 0 24 24"><path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></symbol><use href="#ai:tabler:sun"></use></svg></button></div><span class="rtl:ml-0 ml-4 rtl:mr-4"><a class="text-sm btn-secondary font-semibold md:px-6 ml-2 px-5.5 py-2.5 shadow-none w-auto" href="/downloads">下载</a></span></div></div></div></header><main><section class="relative max-w-7xl mx-auto px-4 sm:px-6 md:py-14 py-10"><div class="max-w-4xl"><h1 class="font-bold dark:text-white text-gray-900 leading-tight md:text-5xl text-4xl">WireGuard</h1><p class="text-muted dark:text-slate-300 leading-8 mt-5 text-lg">WireGuard 配置与维护命令。</p></div></section><section class="mx-auto max-w-7xl px-4 sm:px-6 pb-16"><div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_16rem]"><main class="min-w-0"><div class="border-gray-200 dark:border-slate-800 border-y mb-4 py-4"><div class="flex gap-3 flex-col sm:flex-row sm:items-center sm:justify-between"><label class="border rounded-md bg-white border-gray-200 dark:bg-slate-950 dark:border-slate-700 flex flex-1 gap-3 items-center min-h-11 px-3"><span class="font-bold text-sm shrink-0 text-primary whitespace-nowrap">搜索</span> <input autocomplete="off" class="text-sm dark:text-white text-gray-900 bg-transparent outline-none placeholder:text-slate-400 w-full" data-filter-input placeholder="输入关键词筛选本页内容" type="search"></label><div class="font-bold text-sm dark:text-slate-400 text-muted"><span data-visible-count>12</span> / 12</div></div></div><div><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="安装 apt install wireguard nftables" id="section-1"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">安装</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>apt install wireguard nftables</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 2 cd /etc/wireguard" id="section-2"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 2</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>cd /etc/wireguard</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 3 umask 077" id="section-3"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 3</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>umask 077</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 4 wg genkey | tee server_private.key | wg pubkey > server_public.key" id="section-4"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 4</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>wg genkey | tee server_private.key | wg pubkey &gt; server_public.key</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 5 nano wg0.conf" id="section-5"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 5</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>nano wg0.conf</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 6 # ENDPOINT 10.0.0.2
+
+[Interface]
+# 服务器私钥（请使用实际生成的私钥）
+PrivateKey = uB4YJTk0LtWuWYcYJmKkLdIWyhLEMLUYtuLtGUv0VF8=
+
+# 服务器监听端口（与 nftables 配置中 wireguard set 对应的端口一致）
+ListenPort = 57575
+
+# 服务器在隧道内的地址（可多写几行地址：IPv4 + IPv6）
+Address = 10.100.0.1/24
+Address = fddd:5555::1/64
+
+# 若要访问外网，需要开启 IP 转发
+# 可以直接在这里使用 PostUp/PostDown 配合 nftables，也可以单独写入 /etc/sysctl.conf
+# 下面仅做演示
+#PostUp   = sysctl -w net.ipv4.ip_forward=1; sysctl -w net.ipv6.conf.all.forwarding=1
+#PostDown = sysctl -w net.ipv4.ip_forward=0; sysctl -w net.ipv6.conf.all.forwarding=0
+
+# 如果需要让客户端访问服务器所在的局域网，可以在这里追加路由相关设置，或者由 nftables 完成 NAT。
+# 例如服务端所在局域网是 192.168.1.0/24，可以加：
+# PostUp   = ip route add 192.168.1.0/24 dev wg0" id="section-6"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 6</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-block is-collapsed"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">配置块</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3 max-h-64 overflow-hidden"><code># ENDPOINT 10.0.0.2
+
+[Interface]
+# 服务器私钥（请使用实际生成的私钥）
+PrivateKey = uB4YJTk0LtWuWYcYJmKkLdIWyhLEMLUYtuLtGUv0VF8=
+
+# 服务器监听端口（与 nftables 配置中 wireguard set 对应的端口一致）
+ListenPort = 57575
+
+# 服务器在隧道内的地址（可多写几行地址：IPv4 + IPv6）
+Address = 10.100.0.1/24
+Address = fddd:5555::1/64
+
+# 若要访问外网，需要开启 IP 转发
+# 可以直接在这里使用 PostUp/PostDown 配合 nftables，也可以单独写入 /etc/sysctl.conf
+# 下面仅做演示
+#PostUp   = sysctl -w net.ipv4.ip_forward=1; sysctl -w net.ipv6.conf.all.forwarding=1
+#PostDown = sysctl -w net.ipv4.ip_forward=0; sysctl -w net.ipv6.conf.all.forwarding=0
+
+# 如果需要让客户端访问服务器所在的局域网，可以在这里追加路由相关设置，或者由 nftables 完成 NAT。
+# 例如服务端所在局域网是 192.168.1.0/24，可以加：
+# PostUp   = ip route add 192.168.1.0/24 dev wg0</code></pre><button class="py-2 border-white/10 px-3 border-t font-bold hover:bg-white/10 text-slate-300 text-xs transition w-full" type="button" data-toggle-code>展开</button></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 7 sudo wg-quick up wg0" id="section-7"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 7</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>sudo wg-quick up wg0</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 8 sudo systemctl enable wg-quick@wg0.service" id="section-8"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 8</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>sudo systemctl enable wg-quick@wg0.service</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 9 sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf" id="section-9"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 9</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>sudo sed -i &#39;s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/&#39; /etc/sysctl.conf</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 10 sudo sed -i 's/#net.ipv6.conf.all.forwarding=1/net.ipv6.conf.all.forwarding=1/' /etc/sysctl.conf" id="section-10"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 10</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>sudo sed -i &#39;s/#net.ipv6.conf.all.forwarding=1/net.ipv6.conf.all.forwarding=1/&#39; /etc/sysctl.conf</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="WireGuard 11 sudo sysctl -p" id="section-11"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">WireGuard 11</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>sudo sysctl -p</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article><article class="border-gray-200 dark:border-slate-800 border-b filter-item last:border-b-0 py-8 scroll-mt-24" data-filter-text="客户端脚本 apt install qrencode nano wg-client-manage.sh #!/usr/bin/env bash
+#
+# WireGuard - Add/Remove clients, automatically parse Address prefix from wg0.conf
+#
+
+WG_CONF=&#34;/etc/wireguard/wg0.conf&#34;
+
+# 1) 必须使用 bash
+if readlink /proc/$$/exe | grep -q &#34;dash&#34;; then
+  echo &#34;请使用 bash 而不是 sh/dash 运行此脚本。&#34;
+  exit 1
+fi
+
+# 2) 必须用 root
+if [[ $EUID -ne 0 ]]; then
+  echo &#34;请使用 root 权限运行此脚本。&#34;
+  exit 1
+fi
+
+# 3) 检查配置文件
+if [[ ! -f &#34;$WG_CONF&#34; ]]; then
+  echo &#34;未找到 $WG_CONF，请确认已正确安装并配置 WireGuard。&#34;
+  exit 1
+fi
+
+############################################
+#  函数: 解析服务器信息 (PrivateKey等)    #
+############################################
+parse_server_info() {
+  # 服务器 PrivateKey
+  server_privkey=$(sed -n 's/^[[:space:]]*PrivateKey[[:space:]]*=[[:space:]]*\(.*\)/\1/p' &#34;$WG_CONF&#34; | head -1)
+  if [[ -z &#34;$server_privkey&#34; ]]; then
+    echo &#34;无法在 $WG_CONF 中解析到服务器 PrivateKey。&#34;
+    exit 1
+  fi
+  server_pubkey=$(echo &#34;$server_privkey&#34; | wg pubkey)
+
+  # 服务器端口
+  server_port=$(sed -n 's/^[[:space:]]*ListenPort[[:space:]]*=[[:space:]]*\(.*\)/\1/p' &#34;$WG_CONF&#34; | head -1)
+  [[ -z &#34;$server_port&#34; ]] &#38;&#38; server_port=&#34;51820&#34;
+
+  # 服务器 Endpoint
+  server_endpoint=$(sed -n 's/^[[:space:]]*# ENDPOINT[[:space:]]*\(.*\)/\1/p' &#34;$WG_CONF&#34; | head -1)
+  [[ -z &#34;$server_endpoint&#34; ]] &#38;&#38; server_endpoint=&#34;your_server_ip_or_domain&#34;
+
+  # 解析服务器 IPv4 = x.x.x.x/24
+  # 取 &#34;x.x.x.x&#34; 部分
+  local v4_addr
+  v4_addr=$(sed -n 's/^[[:space:]]*Address[[:space:]]*=[[:space:]]*\([0-9]\+\(\.[0-9]\+\)\{3\}\)\/24/\1/p' &#34;$WG_CONF&#34; | head -1)
+  if [[ -n &#34;$v4_addr&#34; ]]; then
+    # 去掉最后一段 -> x.x.x
+    IPV4_PREFIX=&#34;${v4_addr%.*}&#34;
+    HAS_IPV4=1
+  else
+    HAS_IPV4=0
+  fi
+
+  # 解析服务器 IPv6 = fddd:xxxx::1/64
+  # 假设服务器地址以 &#34;::1&#34; 结尾
+  local v6_addr
+  v6_addr=$(sed -n 's/^[[:space:]]*Address[[:space:]]*=[[:space:]]*\([0-9A-Fa-f:]\+\)\/64/\1/p' &#34;$WG_CONF&#34; | head -1)
+  if [[ -n &#34;$v6_addr&#34; ]]; then
+    # 用 Bash 正则匹配出 &#34;前缀::&#34; 与 &#34;尾部数字&#34;
+    # 例如 &#34;fd42:42::1&#34; -> group1=&#34;fd42:42::&#34; group2=&#34;1&#34;
+    if [[ &#34;$v6_addr&#34; =~ ^(.*::)([0-9A-Fa-f]+)$ ]]; then
+      IPV6_PREFIX=&#34;${BASH_REMATCH[1]}&#34;
+      HAS_IPV6=1
+    else
+      # 如果你的地址不是 ::1 形式，请自行改进解析
+      IPV6_PREFIX=&#34;&#34;
+      HAS_IPV6=0
+    fi
+  else
+    HAS_IPV6=0
+  fi
+}
+
+############################################
+#     函数: 让用户选择 DNS                 #
+############################################
+choose_dns() {
+  echo &#34;选择客户端使用的 DNS 服务器：&#34;
+  echo &#34;   1) 系统默认 (/etc/resolv.conf)&#34;
+  echo &#34;   2) Google (8.8.8.8, 8.8.4.4)&#34;
+  echo &#34;   3) Cloudflare (1.1.1.1, 1.0.0.1)&#34;
+  echo &#34;   4) OpenDNS (208.67.222.222, 208.67.220.220)&#34;
+  echo &#34;   5) Quad9 (9.9.9.9, 149.112.112.112)&#34;
+  echo &#34;   6) AdGuard (94.140.14.14, 94.140.15.15)&#34;
+  read -p &#34;请选择 [1]: &#34; dns_opt
+
+  until [[ -z &#34;$dns_opt&#34; || &#34;$dns_opt&#34; =~ ^[1-6]$ ]]; do
+    echo &#34;$dns_opt: 无效输入。&#34;
+    read -p &#34;请选择 [1]: &#34; dns_opt
+  done
+
+  case &#34;$dns_opt&#34; in
+    1|&#34;&#34;)
+      if grep -q '^nameserver' /etc/resolv.conf | grep -qv '127.0.0.53'; then
+        resolv_conf=&#34;/etc/resolv.conf&#34;
+      else
+        resolv_conf=&#34;/run/systemd/resolve/resolv.conf&#34;
+      fi
+      DNS=$(grep -v '^#\|^;' &#34;$resolv_conf&#34; \
+        | grep '^nameserver' \
+        | grep -v '127.0.0.53' \
+        | grep -oE '[0-9]{1,3}(\.[0-9]{1,3}){3}' \
+        | xargs \
+        | sed 's/ /, /g')
+    ;;
+    2) DNS=&#34;8.8.8.8, 8.8.4.4&#34; ;;
+    3) DNS=&#34;1.1.1.1, 1.0.0.1&#34; ;;
+    4) DNS=&#34;208.67.222.222, 208.67.220.220&#34; ;;
+    5) DNS=&#34;9.9.9.9, 149.112.112.112&#34; ;;
+    6) DNS=&#34;94.140.14.14, 94.140.15.15&#34; ;;
+  esac
+
+  # 如果最终没检测到任何 DNS，就默认给个 Google
+  if [[ -z &#34;$DNS&#34; ]]; then
+    DNS=&#34;8.8.8.8, 8.8.4.4&#34;
+  fi
+}
+
+############################################
+#     函数: 添加新客户端                   #
+############################################
+add_client() {
+  # 解析服务器信息
+  parse_server_info
+
+  if [[ $HAS_IPV4 -eq 0 &#38;&#38; $HAS_IPV6 -eq 0 ]]; then
+    echo &#34;服务器未配置 IPv4 或 IPv6 地址 (Address = ...)，脚本无法继续。&#34;
+    exit 1
+  fi
+
+  # 输入客户端名称
+  echo &#34;请输入新客户端名称 (仅允许英数字、下划线、减号，不超过15字符)：&#34;
+  read -p &#34;Name: &#34; input_name
+  local client_name
+  client_name=$(sed 's/[^0-9A-Za-z_-]/_/g' <<< &#34;$input_name&#34; | cut -c1-15)
+
+  while [[ -z &#34;$client_name&#34; ]] || grep -q &#34;^# BEGIN_PEER $client_name\$&#34; &#34;$WG_CONF&#34;; do
+    echo &#34;$client_name: 无效或已存在，请重新输入。&#34;
+    read -p &#34;Name: &#34; input_name
+    client_name=$(sed 's/[^0-9A-Za-z_-]/_/g' <<< &#34;$input_name&#34; | cut -c1-15)
+  done
+
+  # 选择 DNS
+  echo
+  choose_dns
+
+  # 生成客户端密钥
+  local client_privkey client_pubkey client_psk
+  client_privkey=$(wg genkey)
+  client_pubkey=$(echo &#34;$client_privkey&#34; | wg pubkey)
+  client_psk=$(wg genpsk)
+
+  # 找下一个可用尾段
+  local octet=2
+  while true; do
+    local used4=0 used6=0
+
+    if [[ $HAS_IPV4 -eq 1 ]]; then
+      # 若 AllowedIPs 中已出现 x.x.x.octet/32，则说明占用
+      if grep -q &#34;AllowedIPs = .*${IPV4_PREFIX}\.${octet}/32&#34; &#34;$WG_CONF&#34;; then
+        used4=1
+      fi
+    fi
+
+    if [[ $HAS_IPV6 -eq 1 ]]; then
+      # 若 AllowedIPs 中已出现 prefix::octet/128，则说明占用
+      if grep -q &#34;AllowedIPs = .*${IPV6_PREFIX}${octet}/128&#34; &#34;$WG_CONF&#34;; then
+        used6=1
+      fi
+    fi
+
+    if [[ $used4 -eq 0 &#38;&#38; $used6 -eq 0 ]]; then
+      break
+    else
+      (( octet++ ))
+      if [[ $octet -ge 65535 ]]; then
+        echo &#34;已无可用地址可分配。&#34;
+        exit 1
+      fi
+    fi
+  done
+
+  # 拼出客户端 IPv4/IPv6
+  local client_v4 client_v6
+  if [[ $HAS_IPV4 -eq 1 ]]; then
+    client_v4=&#34;${IPV4_PREFIX}.${octet}&#34;
+  fi
+  if [[ $HAS_IPV6 -eq 1 ]]; then
+    client_v6=&#34;${IPV6_PREFIX}${octet}&#34;
+  fi
+
+  # 将 Peer 写入服务器配置 wg0.conf
+  {
+    echo &#34;# BEGIN_PEER $client_name&#34;
+    echo &#34;[Peer]&#34;
+    echo &#34;PublicKey = $client_pubkey&#34;
+    echo &#34;PresharedKey = $client_psk&#34;
+    if [[ $HAS_IPV4 -eq 1 &#38;&#38; $HAS_IPV6 -eq 1 ]]; then
+      echo &#34;AllowedIPs = $client_v4/32, $client_v6/128&#34;
+    elif [[ $HAS_IPV4 -eq 1 ]]; then
+      echo &#34;AllowedIPs = $client_v4/32&#34;
+    else
+      echo &#34;AllowedIPs = $client_v6/128&#34;
+    fi
+    echo &#34;# END_PEER $client_name&#34;
+  } >> &#34;$WG_CONF&#34;
+
+  # 生成客户端配置文件
+  local client_conf=~/&#34;$client_name.conf&#34;
+  {
+    echo &#34;[Interface]&#34;
+    if [[ $HAS_IPV4 -eq 1 &#38;&#38; $HAS_IPV6 -eq 1 ]]; then
+      echo &#34;Address = $client_v4/24, $client_v6/64&#34;
+    elif [[ $HAS_IPV4 -eq 1 ]]; then
+      echo &#34;Address = $client_v4/24&#34;
+    else
+      echo &#34;Address = $client_v6/64&#34;
+    fi
+    echo &#34;DNS = $DNS&#34;
+    echo &#34;PrivateKey = $client_privkey&#34;
+    echo
+    echo &#34;[Peer]&#34;
+    echo &#34;PublicKey = $server_pubkey&#34;
+    echo &#34;PresharedKey = $client_psk&#34;
+    echo &#34;AllowedIPs = 0.0.0.0/0, ::/0&#34;
+    echo &#34;Endpoint = $server_endpoint:$server_port&#34;
+    echo &#34;PersistentKeepalive = 25&#34;
+  } > &#34;$client_conf&#34;
+
+  # 加载到当前运行中的 wg0
+  wg addconf wg0 <(sed -n &#34;/^# BEGIN_PEER $client_name\$/,/^# END_PEER $client_name\$/p&#34; &#34;$WG_CONF&#34;)
+
+  echo
+  echo &#34;==========================================&#34;
+  echo &#34;已添加新客户端：$client_name&#34;
+  if [[ -n &#34;$client_v4&#34; ]]; then
+    echo &#34;  IPv4: $client_v4&#34;
+  fi
+  if [[ -n &#34;$client_v6&#34; ]]; then
+    echo &#34;  IPv6: $client_v6&#34;
+  fi
+  echo &#34;客户端配置文件：$client_conf&#34;
+
+  # 若安装了 qrencode 则输出二维码
+  if command -v qrencode &#38;>/dev/null; then
+    echo
+    echo &#34;客户端配置二维码：&#34;
+    qrencode -t ANSI256UTF8 < &#34;$client_conf&#34;
+    echo
+  fi
+}
+
+############################################
+#     函数: 删除已有客户端                 #
+############################################
+remove_client() {
+  local total
+  total=$(grep -c '^# BEGIN_PEER' &#34;$WG_CONF&#34;)
+  if [[ $total -eq 0 ]]; then
+    echo
+    echo &#34;当前没有可删除的客户端配置。&#34;
+    return
+  fi
+
+  echo
+  echo &#34;现有客户端列表：&#34;
+  grep '^# BEGIN_PEER' &#34;$WG_CONF&#34; | cut -d ' ' -f 3 | nl -s ') '
+  read -p &#34;请输入要删除的客户端编号: &#34; idx
+
+  if ! [[ &#34;$idx&#34; =~ ^[0-9]+$ ]] || (( idx < 1 || idx > total )); then
+    echo &#34;编号不合法。&#34;
+    return
+  fi
+
+  local client_name
+  client_name=$(grep '^# BEGIN_PEER' &#34;$WG_CONF&#34; | cut -d ' ' -f 3 | sed -n &#34;${idx}p&#34;)
+
+  echo
+  read -p &#34;确认删除客户端 [$client_name]? [y/N]: &#34; confirm
+  if [[ &#34;$confirm&#34; =~ ^[yY]$ ]]; then
+    # 从运行中的 wg0 中移除
+    local pubk
+    pubk=$(sed -n &#34;/^# BEGIN_PEER $client_name\$/,/^# END_PEER $client_name\$/p&#34; &#34;$WG_CONF&#34; \
+      | grep '^PublicKey' | awk '{print $3}')
+    if [[ -n &#34;$pubk&#34; ]]; then
+      wg set wg0 peer &#34;$pubk&#34; remove
+    fi
+
+    # 从配置文件删除
+    sed -i &#34;/^# BEGIN_PEER $client_name\$/,/^# END_PEER $client_name\$/d&#34; &#34;$WG_CONF&#34;
+    echo &#34;已删除客户端：$client_name&#34;
+  else
+    echo &#34;操作取消。&#34;
+  fi
+}
+
+############################################
+#                主菜单                    #
+############################################
+clear
+echo &#34;============================================&#34;
+echo &#34;  WireGuard 客户端管理 (自动解析地址前缀)&#34;
+echo &#34;============================================&#34;
+echo
+echo &#34;1) 添加新客户端&#34;
+echo &#34;2) 删除已有客户端&#34;
+echo &#34;3) 退出&#34;
+echo
+
+read -p &#34;请选择操作 [1-3]: &#34; choice
+case &#34;$choice&#34; in
+  1) add_client ;;
+  2) remove_client ;;
+  3) echo &#34;退出。&#34;; exit 0 ;;
+  *) echo &#34;无效选项，退出。&#34;; exit 1 ;;
+esac" id="section-12"><header class="mb-5"><h2 class="font-bold dark:text-white text-gray-900 text-2xl leading-snug">客户端脚本</h2></header><div class="space-y-5"><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>apt install qrencode</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-single"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">命令</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3"><code>nano wg-client-manage.sh</code></pre></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script><div class="border rounded-md bg-slate-950 border-slate-800 copy-code group overflow-hidden relative shadow-sm text-slate-100 copy-code-block is-collapsed"><div class="py-2 border-white/10 px-3 bg-white/5 border-b flex gap-3 items-center justify-between"><span class="font-bold text-xs text-slate-400 uppercase">配置块</span> <button class="transition border-white/10 font-bold text-xs bg-white/10 border hover:bg-white/20 px-2.5 py-1 rounded text-white" type="button" data-copy-code>复制</button></div><pre class="text-sm leading-6 m-0 overflow-x-auto p-3 max-h-64 overflow-hidden"><code>#!/usr/bin/env bash
+#
+# WireGuard - Add/Remove clients, automatically parse Address prefix from wg0.conf
+#
+
+WG_CONF=&quot;/etc/wireguard/wg0.conf&quot;
+
+# 1) 必须使用 bash
+if readlink /proc/$$/exe | grep -q &quot;dash&quot;; then
+  echo &quot;请使用 bash 而不是 sh/dash 运行此脚本。&quot;
+  exit 1
+fi
+
+# 2) 必须用 root
+if [[ $EUID -ne 0 ]]; then
+  echo &quot;请使用 root 权限运行此脚本。&quot;
+  exit 1
+fi
+
+# 3) 检查配置文件
+if [[ ! -f &quot;$WG_CONF&quot; ]]; then
+  echo &quot;未找到 $WG_CONF，请确认已正确安装并配置 WireGuard。&quot;
+  exit 1
+fi
+
+############################################
+#  函数: 解析服务器信息 (PrivateKey等)    #
+############################################
+parse_server_info() {
+  # 服务器 PrivateKey
+  server_privkey=$(sed -n &#39;s/^[[:space:]]*PrivateKey[[:space:]]*=[[:space:]]*\(.*\)/\1/p&#39; &quot;$WG_CONF&quot; | head -1)
+  if [[ -z &quot;$server_privkey&quot; ]]; then
+    echo &quot;无法在 $WG_CONF 中解析到服务器 PrivateKey。&quot;
+    exit 1
+  fi
+  server_pubkey=$(echo &quot;$server_privkey&quot; | wg pubkey)
+
+  # 服务器端口
+  server_port=$(sed -n &#39;s/^[[:space:]]*ListenPort[[:space:]]*=[[:space:]]*\(.*\)/\1/p&#39; &quot;$WG_CONF&quot; | head -1)
+  [[ -z &quot;$server_port&quot; ]] &amp;&amp; server_port=&quot;51820&quot;
+
+  # 服务器 Endpoint
+  server_endpoint=$(sed -n &#39;s/^[[:space:]]*# ENDPOINT[[:space:]]*\(.*\)/\1/p&#39; &quot;$WG_CONF&quot; | head -1)
+  [[ -z &quot;$server_endpoint&quot; ]] &amp;&amp; server_endpoint=&quot;your_server_ip_or_domain&quot;
+
+  # 解析服务器 IPv4 = x.x.x.x/24
+  # 取 &quot;x.x.x.x&quot; 部分
+  local v4_addr
+  v4_addr=$(sed -n &#39;s/^[[:space:]]*Address[[:space:]]*=[[:space:]]*\([0-9]\+\(\.[0-9]\+\)\{3\}\)\/24/\1/p&#39; &quot;$WG_CONF&quot; | head -1)
+  if [[ -n &quot;$v4_addr&quot; ]]; then
+    # 去掉最后一段 -&gt; x.x.x
+    IPV4_PREFIX=&quot;${v4_addr%.*}&quot;
+    HAS_IPV4=1
+  else
+    HAS_IPV4=0
+  fi
+
+  # 解析服务器 IPv6 = fddd:xxxx::1/64
+  # 假设服务器地址以 &quot;::1&quot; 结尾
+  local v6_addr
+  v6_addr=$(sed -n &#39;s/^[[:space:]]*Address[[:space:]]*=[[:space:]]*\([0-9A-Fa-f:]\+\)\/64/\1/p&#39; &quot;$WG_CONF&quot; | head -1)
+  if [[ -n &quot;$v6_addr&quot; ]]; then
+    # 用 Bash 正则匹配出 &quot;前缀::&quot; 与 &quot;尾部数字&quot;
+    # 例如 &quot;fd42:42::1&quot; -&gt; group1=&quot;fd42:42::&quot; group2=&quot;1&quot;
+    if [[ &quot;$v6_addr&quot; =~ ^(.*::)([0-9A-Fa-f]+)$ ]]; then
+      IPV6_PREFIX=&quot;${BASH_REMATCH[1]}&quot;
+      HAS_IPV6=1
+    else
+      # 如果你的地址不是 ::1 形式，请自行改进解析
+      IPV6_PREFIX=&quot;&quot;
+      HAS_IPV6=0
+    fi
+  else
+    HAS_IPV6=0
+  fi
+}
+
+############################################
+#     函数: 让用户选择 DNS                 #
+############################################
+choose_dns() {
+  echo &quot;选择客户端使用的 DNS 服务器：&quot;
+  echo &quot;   1) 系统默认 (/etc/resolv.conf)&quot;
+  echo &quot;   2) Google (8.8.8.8, 8.8.4.4)&quot;
+  echo &quot;   3) Cloudflare (1.1.1.1, 1.0.0.1)&quot;
+  echo &quot;   4) OpenDNS (208.67.222.222, 208.67.220.220)&quot;
+  echo &quot;   5) Quad9 (9.9.9.9, 149.112.112.112)&quot;
+  echo &quot;   6) AdGuard (94.140.14.14, 94.140.15.15)&quot;
+  read -p &quot;请选择 [1]: &quot; dns_opt
+
+  until [[ -z &quot;$dns_opt&quot; || &quot;$dns_opt&quot; =~ ^[1-6]$ ]]; do
+    echo &quot;$dns_opt: 无效输入。&quot;
+    read -p &quot;请选择 [1]: &quot; dns_opt
+  done
+
+  case &quot;$dns_opt&quot; in
+    1|&quot;&quot;)
+      if grep -q &#39;^nameserver&#39; /etc/resolv.conf | grep -qv &#39;127.0.0.53&#39;; then
+        resolv_conf=&quot;/etc/resolv.conf&quot;
+      else
+        resolv_conf=&quot;/run/systemd/resolve/resolv.conf&quot;
+      fi
+      DNS=$(grep -v &#39;^#\|^;&#39; &quot;$resolv_conf&quot; \
+        | grep &#39;^nameserver&#39; \
+        | grep -v &#39;127.0.0.53&#39; \
+        | grep -oE &#39;[0-9]{1,3}(\.[0-9]{1,3}){3}&#39; \
+        | xargs \
+        | sed &#39;s/ /, /g&#39;)
+    ;;
+    2) DNS=&quot;8.8.8.8, 8.8.4.4&quot; ;;
+    3) DNS=&quot;1.1.1.1, 1.0.0.1&quot; ;;
+    4) DNS=&quot;208.67.222.222, 208.67.220.220&quot; ;;
+    5) DNS=&quot;9.9.9.9, 149.112.112.112&quot; ;;
+    6) DNS=&quot;94.140.14.14, 94.140.15.15&quot; ;;
+  esac
+
+  # 如果最终没检测到任何 DNS，就默认给个 Google
+  if [[ -z &quot;$DNS&quot; ]]; then
+    DNS=&quot;8.8.8.8, 8.8.4.4&quot;
+  fi
+}
+
+############################################
+#     函数: 添加新客户端                   #
+############################################
+add_client() {
+  # 解析服务器信息
+  parse_server_info
+
+  if [[ $HAS_IPV4 -eq 0 &amp;&amp; $HAS_IPV6 -eq 0 ]]; then
+    echo &quot;服务器未配置 IPv4 或 IPv6 地址 (Address = ...)，脚本无法继续。&quot;
+    exit 1
+  fi
+
+  # 输入客户端名称
+  echo &quot;请输入新客户端名称 (仅允许英数字、下划线、减号，不超过15字符)：&quot;
+  read -p &quot;Name: &quot; input_name
+  local client_name
+  client_name=$(sed &#39;s/[^0-9A-Za-z_-]/_/g&#39; &lt;&lt;&lt; &quot;$input_name&quot; | cut -c1-15)
+
+  while [[ -z &quot;$client_name&quot; ]] || grep -q &quot;^# BEGIN_PEER $client_name\$&quot; &quot;$WG_CONF&quot;; do
+    echo &quot;$client_name: 无效或已存在，请重新输入。&quot;
+    read -p &quot;Name: &quot; input_name
+    client_name=$(sed &#39;s/[^0-9A-Za-z_-]/_/g&#39; &lt;&lt;&lt; &quot;$input_name&quot; | cut -c1-15)
+  done
+
+  # 选择 DNS
+  echo
+  choose_dns
+
+  # 生成客户端密钥
+  local client_privkey client_pubkey client_psk
+  client_privkey=$(wg genkey)
+  client_pubkey=$(echo &quot;$client_privkey&quot; | wg pubkey)
+  client_psk=$(wg genpsk)
+
+  # 找下一个可用尾段
+  local octet=2
+  while true; do
+    local used4=0 used6=0
+
+    if [[ $HAS_IPV4 -eq 1 ]]; then
+      # 若 AllowedIPs 中已出现 x.x.x.octet/32，则说明占用
+      if grep -q &quot;AllowedIPs = .*${IPV4_PREFIX}\.${octet}/32&quot; &quot;$WG_CONF&quot;; then
+        used4=1
+      fi
+    fi
+
+    if [[ $HAS_IPV6 -eq 1 ]]; then
+      # 若 AllowedIPs 中已出现 prefix::octet/128，则说明占用
+      if grep -q &quot;AllowedIPs = .*${IPV6_PREFIX}${octet}/128&quot; &quot;$WG_CONF&quot;; then
+        used6=1
+      fi
+    fi
+
+    if [[ $used4 -eq 0 &amp;&amp; $used6 -eq 0 ]]; then
+      break
+    else
+      (( octet++ ))
+      if [[ $octet -ge 65535 ]]; then
+        echo &quot;已无可用地址可分配。&quot;
+        exit 1
+      fi
+    fi
+  done
+
+  # 拼出客户端 IPv4/IPv6
+  local client_v4 client_v6
+  if [[ $HAS_IPV4 -eq 1 ]]; then
+    client_v4=&quot;${IPV4_PREFIX}.${octet}&quot;
+  fi
+  if [[ $HAS_IPV6 -eq 1 ]]; then
+    client_v6=&quot;${IPV6_PREFIX}${octet}&quot;
+  fi
+
+  # 将 Peer 写入服务器配置 wg0.conf
+  {
+    echo &quot;# BEGIN_PEER $client_name&quot;
+    echo &quot;[Peer]&quot;
+    echo &quot;PublicKey = $client_pubkey&quot;
+    echo &quot;PresharedKey = $client_psk&quot;
+    if [[ $HAS_IPV4 -eq 1 &amp;&amp; $HAS_IPV6 -eq 1 ]]; then
+      echo &quot;AllowedIPs = $client_v4/32, $client_v6/128&quot;
+    elif [[ $HAS_IPV4 -eq 1 ]]; then
+      echo &quot;AllowedIPs = $client_v4/32&quot;
+    else
+      echo &quot;AllowedIPs = $client_v6/128&quot;
+    fi
+    echo &quot;# END_PEER $client_name&quot;
+  } &gt;&gt; &quot;$WG_CONF&quot;
+
+  # 生成客户端配置文件
+  local client_conf=~/&quot;$client_name.conf&quot;
+  {
+    echo &quot;[Interface]&quot;
+    if [[ $HAS_IPV4 -eq 1 &amp;&amp; $HAS_IPV6 -eq 1 ]]; then
+      echo &quot;Address = $client_v4/24, $client_v6/64&quot;
+    elif [[ $HAS_IPV4 -eq 1 ]]; then
+      echo &quot;Address = $client_v4/24&quot;
+    else
+      echo &quot;Address = $client_v6/64&quot;
+    fi
+    echo &quot;DNS = $DNS&quot;
+    echo &quot;PrivateKey = $client_privkey&quot;
+    echo
+    echo &quot;[Peer]&quot;
+    echo &quot;PublicKey = $server_pubkey&quot;
+    echo &quot;PresharedKey = $client_psk&quot;
+    echo &quot;AllowedIPs = 0.0.0.0/0, ::/0&quot;
+    echo &quot;Endpoint = $server_endpoint:$server_port&quot;
+    echo &quot;PersistentKeepalive = 25&quot;
+  } &gt; &quot;$client_conf&quot;
+
+  # 加载到当前运行中的 wg0
+  wg addconf wg0 &lt;(sed -n &quot;/^# BEGIN_PEER $client_name\$/,/^# END_PEER $client_name\$/p&quot; &quot;$WG_CONF&quot;)
+
+  echo
+  echo &quot;==========================================&quot;
+  echo &quot;已添加新客户端：$client_name&quot;
+  if [[ -n &quot;$client_v4&quot; ]]; then
+    echo &quot;  IPv4: $client_v4&quot;
+  fi
+  if [[ -n &quot;$client_v6&quot; ]]; then
+    echo &quot;  IPv6: $client_v6&quot;
+  fi
+  echo &quot;客户端配置文件：$client_conf&quot;
+
+  # 若安装了 qrencode 则输出二维码
+  if command -v qrencode &amp;&gt;/dev/null; then
+    echo
+    echo &quot;客户端配置二维码：&quot;
+    qrencode -t ANSI256UTF8 &lt; &quot;$client_conf&quot;
+    echo
+  fi
+}
+
+############################################
+#     函数: 删除已有客户端                 #
+############################################
+remove_client() {
+  local total
+  total=$(grep -c &#39;^# BEGIN_PEER&#39; &quot;$WG_CONF&quot;)
+  if [[ $total -eq 0 ]]; then
+    echo
+    echo &quot;当前没有可删除的客户端配置。&quot;
+    return
+  fi
+
+  echo
+  echo &quot;现有客户端列表：&quot;
+  grep &#39;^# BEGIN_PEER&#39; &quot;$WG_CONF&quot; | cut -d &#39; &#39; -f 3 | nl -s &#39;) &#39;
+  read -p &quot;请输入要删除的客户端编号: &quot; idx
+
+  if ! [[ &quot;$idx&quot; =~ ^[0-9]+$ ]] || (( idx &lt; 1 || idx &gt; total )); then
+    echo &quot;编号不合法。&quot;
+    return
+  fi
+
+  local client_name
+  client_name=$(grep &#39;^# BEGIN_PEER&#39; &quot;$WG_CONF&quot; | cut -d &#39; &#39; -f 3 | sed -n &quot;${idx}p&quot;)
+
+  echo
+  read -p &quot;确认删除客户端 [$client_name]? [y/N]: &quot; confirm
+  if [[ &quot;$confirm&quot; =~ ^[yY]$ ]]; then
+    # 从运行中的 wg0 中移除
+    local pubk
+    pubk=$(sed -n &quot;/^# BEGIN_PEER $client_name\$/,/^# END_PEER $client_name\$/p&quot; &quot;$WG_CONF&quot; \
+      | grep &#39;^PublicKey&#39; | awk &#39;{print $3}&#39;)
+    if [[ -n &quot;$pubk&quot; ]]; then
+      wg set wg0 peer &quot;$pubk&quot; remove
+    fi
+
+    # 从配置文件删除
+    sed -i &quot;/^# BEGIN_PEER $client_name\$/,/^# END_PEER $client_name\$/d&quot; &quot;$WG_CONF&quot;
+    echo &quot;已删除客户端：$client_name&quot;
+  else
+    echo &quot;操作取消。&quot;
+  fi
+}
+
+############################################
+#                主菜单                    #
+############################################
+clear
+echo &quot;============================================&quot;
+echo &quot;  WireGuard 客户端管理 (自动解析地址前缀)&quot;
+echo &quot;============================================&quot;
+echo
+echo &quot;1) 添加新客户端&quot;
+echo &quot;2) 删除已有客户端&quot;
+echo &quot;3) 退出&quot;
+echo
+
+read -p &quot;请选择操作 [1-3]: &quot; choice
+case &quot;$choice&quot; in
+  1) add_client ;;
+  2) remove_client ;;
+  3) echo &quot;退出。&quot;; exit 0 ;;
+  *) echo &quot;无效选项，退出。&quot;; exit 1 ;;
+esac</code></pre><button class="py-2 border-white/10 px-3 border-t font-bold hover:bg-white/10 text-slate-300 text-xs transition w-full" type="button" data-toggle-code>展开</button></div><script>window.__opsCopyCodeReady||(window.__opsCopyCodeReady=!0,document.addEventListener("click",async e=>{const t=e.target.closest("[data-copy-code]");if(t){const e=t.closest(".copy-code"),o=e?.querySelector("code")?.innerText||"";let c=!1;try{navigator.clipboard?.writeText&&window.isSecureContext&&(await navigator.clipboard.writeText(o),c=!0)}catch{c=!1}if(!c){const e=document.createElement("textarea");e.value=o,e.setAttribute("readonly",""),e.style.position="fixed",e.style.left="-9999px",document.body.appendChild(e),e.select(),c=document.execCommand("copy"),e.remove()}const n=t.textContent;return t.textContent=c?"已复制":"复制失败",void setTimeout(()=>{t.textContent=n||"复制"},c?1200:1800)}const o=e.target.closest("[data-toggle-code]");if(o){const e=o.closest(".copy-code"),t=e?.querySelector("pre");if(!e||!t)return;e.classList.toggle("is-expanded");const c=e.classList.contains("is-expanded");t.classList.toggle("max-h-64",!c),t.classList.toggle("overflow-hidden",!c),o.textContent=c?"折叠":"展开"}}))</script></div></article></div></main><aside class="hidden lg:block"><nav aria-label="目录" class="border-gray-200 dark:border-slate-800 border-l pl-5 sticky top-24"><p class="font-bold dark:text-white text-gray-900 mb-4 text-sm">目录</p><ol class="text-sm leading-6 space-y-3"><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-1">安装</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-2">WireGuard 2</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-3">WireGuard 3</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-4">WireGuard 4</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-5">WireGuard 5</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-6">WireGuard 6</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-7">WireGuard 7</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-8">WireGuard 8</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-9">WireGuard 9</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-10">WireGuard 10</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-11">WireGuard 11</a></li><li><a class="transition text-muted dark:text-slate-400 hover:text-primary" href="#section-12">客户端脚本</a></li></ol></nav></aside></div></section></main><footer class="relative border-gray-200 border-t dark:border-slate-800 not-prose"><div class="absolute inset-0 dark:bg-dark pointer-events-none" aria-hidden="true"></div><div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-no-queue intersect-once intersect-quarter motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0"><div class="py-8 gap-4 gap-y-8 grid grid-cols-12 md:py-12 sm:gap-8"><div class="col-span-12 lg:col-span-4"><div class="mb-2"><a class="font-bold inline-block text-xl" href="/">系统配置与下载中心</a></div><div class="text-muted text-sm flex gap-1"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/">首页</a> · <a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/downloads">下载</a></div></div><div class="col-span-6 lg:col-span-2 md:col-span-3"><div class="mb-2 dark:text-gray-300 font-medium">Debian</div><ul class="text-sm"><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/debian/linux-kernel-build">Linux内核编译</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/debian/common-commands">常用命令</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/debian/tmux-screen">Tmux && Screen</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/debian/python">Python</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/debian/wireguard">WireGuard</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/debian/acme-certs">ACME证书</a></li></ul></div><div class="col-span-6 lg:col-span-2 md:col-span-3"><div class="mb-2 dark:text-gray-300 font-medium">PVE</div><ul class="text-sm"><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/pve/config">配置</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/pve/import-disk">导入磁盘镜像</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/pve/disk-rdm">磁盘RDM直通</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/pve/zfs">ZFS</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/pve/pve-aspm">PVE ASPM设置</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/pve/vm-management">虚拟机管理</a></li></ul></div><div class="col-span-6 lg:col-span-2 md:col-span-3"><div class="mb-2 dark:text-gray-300 font-medium">Windows</div><ul class="text-sm"><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/windows/md5-win2022">MD5/WIN2022激活</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/windows/adb">ADB命令</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/windows/network">网络命令</a></li></ul></div><div class="col-span-6 lg:col-span-2 md:col-span-3"><div class="mb-2 dark:text-gray-300 font-medium">下载</div><ul class="text-sm"><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/downloads">下载总览</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/downloads/debian-scripts">Debian脚本</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/downloads/windows-tools">Windows工具</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/downloads/registry-files">注册表文件</a></li><li class="mb-2"><a class="transition text-muted dark:text-gray-400 duration-150 ease-in-out hover:text-gray-700 hover:underline" href="/downloads/pictures">图片</a></li></ul></div></div><div class="md:justify-between md:flex md:items-center md:py-8 py-6"><div class="text-sm dark:text-muted mr-4"></div></div></div></footer><script>!function(){const e="system";if(window.basic_script)return;function t(e){"dark"===e?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}window.basic_script=!0;const a=function(){e&&e.endsWith(":only")||(localStorage.theme,0)?t(e.replace(":only","")):"dark"===localStorage.theme||!("theme"in localStorage)&&window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):t("light")};function d(e,t,a){const d="string"==typeof e?document.querySelectorAll(e):e;d&&d.length&&d.forEach(e=>{e.addEventListener(t,t=>a(t,e),!1)})}a();const o=function(){let t=window.scrollY,a=!0;d("#header nav","click",function(){document.querySelector("[data-aw-toggle-menu]")?.classList.remove("expanded"),document.body.classList.remove("overflow-hidden"),document.getElementById("header")?.classList.remove("h-screen"),document.getElementById("header")?.classList.remove("expanded"),document.getElementById("header")?.classList.remove("bg-page"),document.querySelector("#header nav")?.classList.add("hidden"),document.querySelector("#header > div > div:last-child")?.classList.add("hidden")}),d("[data-aw-toggle-menu]","click",function(e,t){t.classList.toggle("expanded"),document.body.classList.toggle("overflow-hidden"),document.getElementById("header")?.classList.toggle("h-screen"),document.getElementById("header")?.classList.toggle("expanded"),document.getElementById("header")?.classList.toggle("bg-page"),document.querySelector("#header nav")?.classList.toggle("hidden"),document.querySelector("#header > div > div:last-child")?.classList.toggle("hidden")}),d("[data-aw-toggle-color-scheme]","click",function(){e.endsWith(":only")||(Observer.removeAnimationDelay(),document.documentElement.classList.toggle("dark"),localStorage.theme=document.documentElement.classList.contains("dark")?"dark":"light")}),d("[data-aw-social-share]","click",function(e,t){const a=t.getAttribute("data-aw-social-share"),d=encodeURIComponent(t.getAttribute("data-aw-url")),o=encodeURIComponent(t.getAttribute("data-aw-text"));let n;switch(a){case"facebook":n=`https://www.facebook.com/sharer.php?u=${d}`;break;case"twitter":n=`https://twitter.com/intent/tweet?url=${d}&text=${o}`;break;case"linkedin":n=`https://www.linkedin.com/shareArticle?mini=true&url=${d}&title=${o}`;break;case"whatsapp":n=`https://wa.me/?text=${o}%20${d}`;break;case"mail":n=`mailto:?subject=%22${o}%22&body=${o}%20${d}`;break;default:return}const c=document.createElement("a");c.target="_blank",c.href=n,c.click()});function o(){const e=document.querySelector("#header[data-aw-sticky-header]");e&&(t>60&&!e.classList.contains("scroll")?e.classList.add("scroll"):t<=60&&e.classList.contains("scroll")&&e.classList.remove("scroll"),a=!1)}window.matchMedia("(max-width: 767px)").addEventListener("change",function(){document.querySelector("[data-aw-toggle-menu]")?.classList.remove("expanded"),document.body.classList.remove("overflow-hidden"),document.getElementById("header")?.classList.remove("h-screen"),document.getElementById("header")?.classList.remove("expanded"),document.getElementById("header")?.classList.remove("bg-page"),document.querySelector("#header nav")?.classList.add("hidden"),document.querySelector("#header > div > div:last-child")?.classList.add("hidden")}),o(),d([document],"scroll",function(){t=window.scrollY,a||(window.requestAnimationFrame(()=>{o()}),a=!0)})},n=function(){document.documentElement.classList.add("motion-safe:scroll-smooth");const e=document.querySelector("[data-aw-toggle-menu]");e&&e.classList.remove("expanded"),document.body.classList.remove("overflow-hidden"),document.getElementById("header")?.classList.remove("h-screen"),document.getElementById("header")?.classList.remove("expanded"),document.querySelector("#header nav")?.classList.add("hidden")};window.onload=o,window.onpageshow=n,document.addEventListener("astro:after-swap",()=>{a(),o(),n()})}()</script><script>const Observer={observer:null,delayBetweenAnimations:100,animationCounter:0,elements:null,start(t){this.observer&&this.observer.disconnect(),this.animationCounter=0;this.elements=Array.from(document.querySelectorAll(['[class*=" intersect:"]','[class*=":intersect:"]','[class^="intersect:"]','[class="intersect"]','[class*=" intersect "]','[class^="intersect "]','[class$=" intersect"]'].join(",")));if(this.elements.forEach(t=>{var e;t.setAttribute("no-intersect",""),t._intersectionThreshold=(e=t).classList.contains("intersect-full")?.99:e.classList.contains("intersect-half")?.5:e.classList.contains("intersect-quarter")?.25:0}),t){const t=window.innerHeight;this.elements.forEach(e=>{const s=e.getBoundingClientRect();s.top<t&&s.bottom>0&&(e.removeAttribute("no-intersect"),e.setAttribute("data-animated","true"),e.style.animationDuration="0s")})}this.observer=new IntersectionObserver(t=>{t.forEach(t=>{requestAnimationFrame(()=>{const e=t.target,s=t.intersectionRatio,n=e._intersectionThreshold;if(e.classList.contains("intersect-no-queue"))t.isIntersecting?(e.removeAttribute("no-intersect"),e.classList.contains("intersect-once")&&this.observer.unobserve(e)):e.setAttribute("no-intersect","");else if(s>=n){if(!e.hasAttribute("data-animated")){e.removeAttribute("no-intersect"),e.setAttribute("data-animated","true"),e.style.animationDuration="";const t=this.animationCounter*this.delayBetweenAnimations;this.animationCounter++,e.style.transitionDelay=`${t}ms`,e.style.animationDelay=`${t}ms`,e.classList.contains("intersect-once")&&this.observer.unobserve(e)}}else e.setAttribute("no-intersect",""),e.removeAttribute("data-animated"),e.style.transitionDelay="",e.style.animationDelay="",e.style.animationDuration="",this.animationCounter=0})})},{threshold:[0,.25,.5,.99]}),this.elements.forEach(t=>{t.hasAttribute("data-animated")||this.observer.observe(t)})},removeAnimationDelay(){this.elements.forEach(t=>{"true"===t.getAttribute("data-animated")&&(t.style.transitionDelay="",t.style.animationDelay="")})}};Observer.start(!1),document.addEventListener("astro:after-swap",()=>{Observer.start(!0)})</script></body></html><script>document.addEventListener("input",t=>{const e=t.target.closest("[data-filter-input]");if(!e)return;const n=e.value.trim().toLowerCase();let o=0;document.querySelectorAll(".filter-item").forEach(t=>{const e=(t.dataset.filterText||t.textContent||"").toLowerCase(),r=!n||e.includes(n);t.hidden=!r,r&&(o+=1)});const r=document.querySelector("[data-visible-count]");r&&(r.textContent=String(o))})</script>

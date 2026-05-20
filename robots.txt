@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: http://10.0.0.165/sitemap-index.xml
